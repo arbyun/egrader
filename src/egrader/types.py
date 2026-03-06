@@ -21,6 +21,13 @@ class StudentGit:
         self.url_type: str | None = None
         self.repos: Dict[str, str] = {}
 
+        # Support plain local paths directly (including Windows absolute paths)
+        p_local = Path(url)
+        if p_local.exists() and p_local.is_dir():
+            self.url_type = "file"
+            self._url = str(p_local)
+            return
+
         # Validate partial Git URL (only local file and http/https supported)
         u = urlparse(url)
         if u.scheme in {"file", ""}:

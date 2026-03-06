@@ -7,7 +7,7 @@ from io import StringIO
 from pathlib import Path
 from typing import Final
 
-from sh import ErrorReturnCode
+from .git import GitError
 
 from .assess import assess
 from .cli_lib import (
@@ -152,7 +152,7 @@ def main():
             args[0].func(assess_fp, args[0], args[1])
             out_string = out_stream.getvalue()
     except (
-        ErrorReturnCode,
+        GitError,
         FileNotFoundError,
         FileExistsError,
         CLIArgError,
@@ -167,3 +167,4 @@ def main():
     else:
         print(out_string, end="")
         return 0
+

@@ -29,7 +29,6 @@ dependencies = [
     "python-dateutil",
     "pyyaml",
     "requests",
-    "sh >= 2.0.0",
     "yarl",
     "validators" ]
 
@@ -91,8 +90,7 @@ check_untyped_defs = true
 
 [[tool.mypy.overrides]]
 module = [
-    "validators",
-    "sh"
+    "validators"
 ]
 ignore_missing_imports = true
 
